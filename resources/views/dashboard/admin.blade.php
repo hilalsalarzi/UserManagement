@@ -60,7 +60,8 @@
 
     <!-- Main Content -->
     <main class="col-md-10 ms-sm-auto px-md-4 content">
-      <h2>Welcome, Admin</h2>
+    <h2>Welcome, Admin{{ $userid = auth()->id(); }}</h2>
+    {{ $userid }}
       <p>This is your dashboard. You can manage users, products, and more here.</p>
 
       <div class="row mt-4">

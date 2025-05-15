@@ -32,10 +32,34 @@ class RegisterController extends Controller
         // Log the user in
 
 
-        return redirect()->url('/dashboard')->with('success', 'Account created successfully!');
+        return redirect()->route('dashboard')->with('success', 'Account created successfully!');
     }
     public function dashboard()
     {
         return view('dashboard.admin');
+    }
+
+
+    public function login()
+    {
+        return view('auth.login');
+    }
+    // loging
+    public function loging(Request $request)
+    {
+        $request->validate([
+            'email' => 'required|string|email|max:255',
+            'password' => 'required|string',
+        ]);
+// dd($request->all());
+        // Attempt to log the user in
+        if(auth()->attempt(['email' => $request->email, 'password' => $request->password])) {
+            // Authentication passed...
+            return view('dashboard.admin');
+
+        }
+
+
+        return redirect()->back()->withErrors(['email' => 'Invalid credentials']);
     }
 }

@@ -10,3 +10,5 @@ Route::get('/', function () {
 Route::get('/signup',[RegisterController::class,'signUp'])->name('signup');
 Route::get('/dashboard',[RegisterController::class,'dashboard']);
 Route::post('/ceateaccount',[RegisterController::class,'createAccount'])->name('createAccount');
+Route::get('/login',[RegisterController::class,'login'])->name('login');
+Route::post('/loging',[RegisterController::class,'loging'])->name('loging');

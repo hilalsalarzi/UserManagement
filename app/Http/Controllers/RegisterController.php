@@ -36,6 +36,11 @@ class RegisterController extends Controller
     }
     public function dashboard()
     {
+        if(!auth()->check()) {
+            return redirect()->route('login')->withErrors(['email' => 'You must be logged in to access the dashboard']);
+        }
+
+
         return view('dashboard.admin');
     }
 
@@ -55,11 +60,19 @@ class RegisterController extends Controller
         // Attempt to log the user in
         if(auth()->attempt(['email' => $request->email, 'password' => $request->password])) {
             // Authentication passed...
-            return view('dashboard.admin');
+            return redirect()->route('dashboard');
 
         }
 
 
         return redirect()->back()->withErrors(['email' => 'Invalid credentials']);
     }
+
+    public function logout()
+    {
+        auth()->logout();
+        return redirect()->route('login')->with('success', 'Logged out successfully!');
+    }
+
+
 }

@@ -53,17 +53,21 @@
           <a class="nav-link" href="#"><i class="fas fa-cog"></i> Settings</a>
         </li>
         <li class="nav-item mt-4">
-          <a class="nav-link text-danger" href="#"><i class="fas fa-sign-out-alt"></i> Logout</a>
+          <a class="nav-link text-danger" href="{{ route("logout") }}"><i class="fas fa-sign-out-alt"></i> Logout</a>
         </li>
       </ul>
     </nav>
 
     <!-- Main Content -->
     <main class="col-md-10 ms-sm-auto px-md-4 content">
-    <h2>Welcome, Admin{{ $userid = auth()->id(); }}</h2>
-    {{ $userid }}
+    {{-- <h2>Welcome, Admin{{ $userid = auth()->id(); }}</h2> --}}
+    {{-- {{ $userid }} --}}
       <p>This is your dashboard. You can manage users, products, and more here.</p>
-
+      <a href="https://wa.me/923428890064?text=Hello%20OnicByte%2C%20I%20am%20interested%20in%20your%20services
+" target="_blank">
+        {{-- Chat with us on WhatsApp || {{ auth()->user()->email }} --}}
+        {{ auth()->id()}}
+      </a>
       <div class="row mt-4">
         <div class="col-md-4">
           <div class="card text-white bg-primary mb-3">

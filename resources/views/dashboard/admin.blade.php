@@ -66,13 +66,27 @@
       <a href="https://wa.me/923428890064?text=Hello%20OnicByte%2C%20I%20am%20interested%20in%20your%20services
 " target="_blank">
         {{-- Chat with us on WhatsApp || {{ auth()->user()->email }} --}}
-        {{ auth()->id()}}
+        {{ auth()->user()->role }}
+{{ Session::get('username') }}
+{{ Session::get('role') }}
       </a>
       <div class="row mt-4">
         <div class="col-md-4">
           <div class="card text-white bg-primary mb-3">
             <div class="card-body">
-              <h5 class="card-title"><i class="fas fa-users"></i> Total Users</h5>
+              @if(Session::get('role') =='admin')
+              @if(Session::has('username'))
+              {{  session::forget('username')}}
+             <p> deleted</p>
+              @else
+                <p>No username found in session.</p>
+              @endif
+
+
+              <h5 class="card-title"><i class="fas fa-users"></i> Total product</h5>
+              @else
+              <h5 class="card-title"><i class="fas fa-users"></i>YOur  product</h5>
+@endif
               <p class="card-text fs-4">120</p>
             </div>
           </div>

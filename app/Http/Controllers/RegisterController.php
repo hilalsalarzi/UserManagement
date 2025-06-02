@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 
 class RegisterController extends Controller
 {
@@ -39,9 +40,16 @@ class RegisterController extends Controller
         if(!auth()->check()) {
             return redirect()->route('login')->withErrors(['email' => 'You must be logged in to access the dashboard']);
         }
-
-
-        return view('dashboard.admin');
+        $username=auth()->user()->name;
+        $role=auth()->user()->role;
+        Session::put('username', $username);
+        Session::put('role', $role);
+        // if($role=='admin'){
+        //     return view('dashboard.admin');            }
+        if($role=='user'){
+            return view('dashboard.user');
+        }
+        // return view('dashboard.admin');
     }
 
 
@@ -60,6 +68,11 @@ class RegisterController extends Controller
         // Attempt to log the user in
         if(auth()->attempt(['email' => $request->email, 'password' => $request->password])) {
             // Authentication passed...
+            $username=auth()->user()->name;
+            $role=auth()->user()->role;
+            Session::put('username', $username);
+            Session::put('role', $role);
+
             return redirect()->route('dashboard');
 
         }

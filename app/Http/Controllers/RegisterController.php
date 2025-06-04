@@ -40,16 +40,17 @@ class RegisterController extends Controller
         if(!auth()->check()) {
             return redirect()->route('login')->withErrors(['email' => 'You must be logged in to access the dashboard']);
         }
-        $username=auth()->user()->name;
-        $role=auth()->user()->role;
-        Session::put('username', $username);
-        Session::put('role', $role);
+        // $username=auth()->user()->name;
+        // $role=auth()->user()->role;
+        // Session::put('username', $username);
+        // Session::put('role', $role);
         // if($role=='admin'){
-        //     return view('dashboard.admin');            }
-        if($role=='user'){
-            return view('dashboard.user');
-        }
-        // return view('dashboard.admin');
+        //     return view('dashboard.admin');
+        //            }
+        // if($role=='user'){
+        //     return view('dashboard.user');
+        // }
+        return view('dashboard.user');
     }
 
 
@@ -68,10 +69,10 @@ class RegisterController extends Controller
         // Attempt to log the user in
         if(auth()->attempt(['email' => $request->email, 'password' => $request->password])) {
             // Authentication passed...
-            $username=auth()->user()->name;
-            $role=auth()->user()->role;
-            Session::put('username', $username);
-            Session::put('role', $role);
+            // $username=auth()->user()->name;
+            // $role=auth()->user()->role;
+            // Session::put('username', $username);
+            // Session::put('role', $role);
 
             return redirect()->route('dashboard');
 

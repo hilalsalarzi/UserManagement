@@ -35,7 +35,7 @@
   <div class="row">
     <!-- Sidebar -->
     <nav class="col-md-2 d-none d-md-block sidebar p-3">
-      <h4 class="text-white text-center mb-4">Admin Panel</h4>
+      <h4 class="text-white text-center mb-4">User Panel</h4>
       <ul class="nav flex-column">
         <li class="nav-item mb-2">
           <a class="nav-link" href="#"><i class="fas fa-tachometer-alt"></i> Dashboard</a>
@@ -63,13 +63,15 @@
     {{-- <h2>Welcome, Admin{{ $userid = auth()->id(); }}</h2> --}}
     {{-- {{ $userid }} --}}
       <p>This is your dashboard. You can manage users, products, and more here.</p>
-      <a href="https://wa.me/923428890064?text=Hello%20OnicByte%2C%20I%20am%20interested%20in%20your%20services
-" target="_blank">
+      {{-- <a href="https://wa.me/923428890064?text=Hello%20OnicByte%2C%20I%20am%20interested%20in%20your%20services --}}
+{{-- " target="_blank"> --}}
         {{-- Chat with us on WhatsApp || {{ auth()->user()->email }} --}}
-        {{ auth()->user()->role }}
-{{ Session::get('username') }}
-{{ Session::get('role') }}
-      </a>
+        {{ auth()->user()->name }}
+{{-- {{ Session::get('username') }} --}}
+{{-- {{ Session::get('role') }}
+{{  session::forget('username')}}
+{{  session::forget('role')}} --}}
+      {{-- </a> --}}
       <div class="row mt-4">
         <div class="col-md-4">
           <div class="card text-white bg-primary mb-3">

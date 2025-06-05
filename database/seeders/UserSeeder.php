@@ -13,13 +13,15 @@ class UserSeeder extends Seeder
      */
     public function run(): void
     {
-        //user seeder
-        DB::table('users')->insert([
-            'name' => 'Admin',
-            'email' => 'admin@gmail.com',
-            'password' => bcrypt('admin123'),
-            'role' => 'admin',
-        ]);
+        // Insert 10 users
+        for ($i = 1; $i <= 10; $i++) {
+            DB::table('users')->insert([
+            'name' => fake()->name(),
+            'email' => fake()->unique()->safeEmail(),
+            'password' => bcrypt('password' . $i),
+            'role' => fake()->randomElement(['admin', 'user']), // Randomly assign 'admin' or 'user'
+            ]);
+        }
 
 
     }

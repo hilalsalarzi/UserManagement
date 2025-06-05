@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\PostController;
 use App\Http\Controllers\RegisterController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Session;
@@ -35,3 +36,5 @@ Route::middleware(['auth', 'ismanager'])->group(function () {
     Route::get('/admin', [AdminController::class, 'index']);
 });
 Route::get('/manager', [AdminController::class, 'mgaddprodct']);
+// make resouce route for post
+Route::resource('/posts', PostController::class)->middleware('auth');
